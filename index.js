@@ -18,4 +18,28 @@
     
 // $("h1").text(sentence);
 // });
+var randomNum;
+var btnClick;
+console.log(randomNum);
 
+$("button").click(inputCount);
+
+
+function inputCount(){
+    randomNum = Math.floor(Math.random()*4+1)
+    btnClick = $(this).attr("id");
+    $(this).addClass("flash");
+    setTimeout(() =>{
+        
+        $(this).removeClass("flash");
+        
+    },100);
+    
+   
+    console.log(btnClick);
+    if (randomNum==btnClick) {
+        //continue
+    } else {
+        // $("body").css("background-color", "red")
+    }
+}
