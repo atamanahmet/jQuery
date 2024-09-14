@@ -10,3 +10,5 @@ else{
 console.log($("h1").text());
 $("Button").html("<em>Click Me!</em>");
 
+console.log($("button").attr("class"));
+
