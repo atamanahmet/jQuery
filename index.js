@@ -100,6 +100,7 @@ $("body").keypress(function () {
     // setTimeout(() => {
     //   $(this).removeClass("flash");
     // }, 200);
+    
 //User button click input#id getting and pushing into an array
     userSelection = Number($(this).attr("id"));
     clickCounter++;
