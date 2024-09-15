@@ -104,28 +104,27 @@ $("body").keypress(function () {
 
     // console.log(gameArray);
 
-    if(gameArray==userArray){
+    if (gameArray[clickCounter] == userSelection) {
+      // console.log("user selection =" + userSelection);
+      // console.log("GameRandom = " + gameArray[clickCounter]);
+      console.log("same");
+      userArray.push(userSelection);
+      clickCounter++;
+    } else if (gameArray[clickCounter] != userSelection) {
+      console.log("user selection =" + userSelection);
+      console.log("GameRandom = " + gameArray[clickCounter]);
+      console.log("user Array = " + userArray);
+      gameOver();
+    }
+    if (JSON.stringify.gameArray == JSON.stringify.userArray) {
       console.log(gameArray);
       console.log(userArray);
+      generateAndPushRandom();
     }
 
-  //   if (gameArray[clickCounter] == userSelection) {
-  //     console.log("user selection =" + userSelection);
-  //     console.log("GameRandom = " + gameArray[clickCounter]);
-  //     console.log("same");
-
-  //     userArray.push(userSelection);
-  //     clickCounter++;
-  //   } else if (gameArray[clickCounter] != userSelection) {
-  //     console.log("user selection =" + userSelection);
-  //     console.log("GameRandom = " + gameArray[clickCounter]);
-  //     console.log("user Array = " + userArray);
-  //     gameOver();
-  //   }
-
-  //   if ((gameArray.length == clickCounter)&&(gameArray == userArray)) {
-  //     generateAndPushRandom();
-  // }
+    //   if ((gameArray.length == clickCounter)&&(gameArray == userArray)) {
+    //     generateAndPushRandom();
+    // }
   });
 });
 
