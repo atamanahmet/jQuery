@@ -102,6 +102,7 @@ $("body").keypress(function () {
     // }, 200);
 //User button click input#id getting and pushing into an array
     userSelection = Number($(this).attr("id"));
+    clickCounter++;
     // userArray.push(userSelection);
 
     // console.log(gameArray);
@@ -120,8 +121,13 @@ $("body").keypress(function () {
     //   if ((gameArray.length == clickCounter)&&(gameArray == userArray)) {
     //     generateAndPushRandom();
     // }
+    return userSelection
   });
 });
+
+if (clickCounter==gameArray.length){
+  statusCheck();
+}
 
 function generateAndPushRandom() {
   randomNumber = Math.floor(Math.random() * 4);
