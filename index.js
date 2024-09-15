@@ -19,68 +19,85 @@
 // $("h1").text(sentence);
 // });
 
-var randomNum;
-var btnClick;
-var userArray = [];
-var randomArray = [];
-var randomCheck;
-var counter = 0;
+// var randomNum;
+// var btnClick;
+// var userArray = [];
+// var randomArray = [];
+// var randomCheck;
+// var counter = 0;
 
-$("body").keypress(function () {
-  randomNum = Math.floor(Math.random() * 4 + 1);
-  randomArray.push(randomNum);
-  randomFlash();
-  // console.log("Random number is " + randomNum);
-  console.log(randomArray);
+// $("body").keypress(function () {
+//   randomNum = Math.floor(Math.random() * 4);
+//   console.log(randomNum);
+//   randomArray.push(randomNum);
+//   randomFlash();
+//   // console.log("Random number is " + randomNum);
+//   // console.log(randomArray);
 
-  $("button").click(function () {
+//   $("button").click(function () {
 
-    btnClick = Number($(this).attr("id"));
-    userArray.push(btnClick);
-    // console.log("counter base array "+userArray[counter]);
-    addFlash();
+//     btnClick = Number($(this).attr("id"));
+//     userArray.push(btnClick);
+//     // console.log(userArray);
+//     // console.log("counter base array "+userArray[counter]);
+//     addFlash();
 
     
 
-    for (i=0; i<counter; i++){
+//     for (i=0; i<counter; i++){
   
-      if(randomArray[i]==userArray[i]){
-        // continue 
-        console.log("same");
-        console.log("User Array = "+userArray);
-        console.log("random Array = "+randomArray);
-      }
-      else if (randomArray[i]!=userArray[i]){
-        // red
-        console.log("not same");
-        
-      }
-    }
-    // console.log("User Select " + btnClick);
-    randomNum = Math.floor(Math.random() * 4 + 1);
-    randomArray.push(randomNum);
-    // console.log(randomArray);
-    randomFlash();
-    // console.log("Random number is " + randomNum);
-    counter++;
-    console.log("counter "+counter);
-  });
+//     }
+//     // console.log("User Select " + btnClick);
+//     randomNum = Math.floor(Math.random() * 4 + 1);
+//     randomArray.push(randomNum);
+//     // console.log(randomArray);
+//     randomFlash();
+//     // console.log("Random number is " + randomNum);
+//     counter++;
+//     console.log("counter "+counter);
+//   });
+// });
+
+// function addFlash() {
+//   $(this).addClass("flash");
+
+//   setTimeout(() => {
+//     $(this).removeClass("flash");
+//   }, 100);
+// }
+
+// function randomFlash() {
+//   randomCheck = "#" + randomNum;
+//   $(randomCheck).addClass("activeBox");
+//   setTimeout(() => {
+//     $(randomCheck).removeClass("activeBox");
+//   }, 700);
+// }
+
+var randomNumber;
+var gameArray=[];
+var userArray=[];
+var userSelection;
+var gameCounter=0;
+
+$("body").keypress(function (){
+ randomNumber= Math.floor(Math.random()*4);
+ gameArray.push(randomNumber);
+ console.log(gameArray);
+
+ $("button").click(function (){
+  userSelection = Number($(this).attr("id"));
+  userArray.push(userSelection);
+  console.log(gameArray);
+  console.log(userArray);
+  if (userArray[gameCounter]==gameArray[gameCounter]){
+    console.log("same");
+    gameCounter++;
+  }
+  else {
+    console.log("wrong");
+  }
+ })
 });
-
-function addFlash() {
-  $(this).addClass("flash");
-
-  setTimeout(() => {
-    $(this).removeClass("flash");
-  }, 100);
-}
-
-function randomFlash() {
-  randomCheck = "#" + randomNum;
-  $(randomCheck).addClass("activeBox");
-  setTimeout(() => {
-    $(randomCheck).removeClass("activeBox");
-  }, 700);
-}
 
 
