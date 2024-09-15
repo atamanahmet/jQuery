@@ -76,7 +76,7 @@ var randomNumber;
 var gameArray = [];
 var userArray = [];
 var userSelection;
-var gameCounter = 0;
+var counter = -1;
 var clickCounter = 0;
 var soundCount;
 var soundObj = {
@@ -91,44 +91,43 @@ $("body").keypress(function () {
   generateAndPushRandom();
 
   $("button").click(function () {
-
-    //Sound-Animation etc
-    // soundCount = "sound" + $(this).attr("id");
-    // // console.log(soundCount);
-    // soundObj[soundCount].play();
-    // $(this).addClass("flash");
-    // setTimeout(() => {
-    //   $(this).removeClass("flash");
-    // }, 200);
-    
-//User button click input#id getting and pushing into an array
-    userSelection = Number($(this).attr("id"));
     clickCounter++;
+    // Sound-Animation etc
+    soundCount = "sound" + $(this).attr("id");
+    soundObj[soundCount].play();
+    
+    $(this).addClass("flash");
+    setTimeout(() => {
+      $(this).removeClass("flash");
+    }, 200);
+
+    //User button click input#id getting and pushing into an array
+    userSelection = Number($(this).attr("id"));
+
+    userArray.push(userSelection);
+    // console.log("object");
     // userArray.push(userSelection);
 
     // console.log(gameArray);
+    if (gameArray[counter] == userSelection) {
+      console.log(true);
+      counter++;
+      if (clickCounter == gameArray.length) {
+        console.log("click counter " + clickCounter);
+        statusCheck();
+      }
+    } else {
+      gameOver();
+    }
 
- 
-
-
-
-    
     // if (JSON.stringify.gameArray == JSON.stringify.userArray) {
-    //   console.log(gameArray);
-    //   console.log(userArray);
     //   generateAndPushRandom();
     // }
-
     //   if ((gameArray.length == clickCounter)&&(gameArray == userArray)) {
     //     generateAndPushRandom();
     // }
-    return userSelection
   });
 });
-
-if (clickCounter==gameArray.length){
-  statusCheck();
-}
 
 function generateAndPushRandom() {
   randomNumber = Math.floor(Math.random() * 4);
@@ -147,22 +146,32 @@ function generateAndPushRandom() {
       ); // Animation complete.
     }
   );
+  counter++;
   // console.log(gameArray[clickCounter]);
+  console.log(gameArray);
 }
 function gameOver() {
   console.log("wrong");
   soundObj.wrong.play();
   $("body").css("background-color", "red");
   $("h1").html("Game Over.<br>Press F5 to Restart");
+  console.log("user selection "+ userSelection);
+  console.log("user selection "+ gameArray[counter]);
 }
-function statusCheck(){
-  for (i=0; i<gameArray.length; i++){
-    if(gameArray[i] == userArray[i]){
+function statusCheck() {
+  for (i = 0; i < gameArray.length; i++) {
+    if (gameArray[i] == userArray[i]) {
       //continue
       console.log("check done.");
-    }
-    else {
-      //gameOver();
-    }
-}
+      generateAndPushRandom();
+      clickCounter = 0;
+      counter=0;
+      console.log("click counter " + clickCounter);
+      console.log("counter " + counter);
+      userArray = [];
+    } 
+    // else {
+    //   // gameOver();
+    // }
+  }
 }
