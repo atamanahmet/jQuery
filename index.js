@@ -78,6 +78,8 @@ var userArray = [];
 var userSelection;
 var counter = -1;
 var clickCounter = 0;
+var level = 0;
+var started= false;
 var soundCount;
 var soundObj = {
   sound0: new Audio("./sounds/green.mp3"),
@@ -88,8 +90,9 @@ var soundObj = {
 };
 
 $("body").keypress(function () {
+  if(!started){
   generateAndPushRandom();
-
+  $("h1").text("Level "+level)
   $("button").click(function () {
     clickCounter++;
     // Sound-Animation etc
@@ -119,6 +122,7 @@ $("body").keypress(function () {
     } else {
       gameOver();
     }
+    
 
     // if (JSON.stringify.gameArray == JSON.stringify.userArray) {
     //   generateAndPushRandom();
@@ -127,11 +131,13 @@ $("body").keypress(function () {
     //     generateAndPushRandom();
     // }
   });
-});
+}});
 
 function generateAndPushRandom() {
+ started=true;
   randomNumber = Math.floor(Math.random() * 4);
   gameArray.push(randomNumber);
+  level++;
   $("#" + randomNumber).animate(
     {
       opacity: 0.25,
@@ -154,9 +160,15 @@ function gameOver() {
   console.log("wrong");
   soundObj.wrong.play();
   $("body").css("background-color", "red");
-  $("h1").html("Game Over.<br>Press F5 to Restart");
-  console.log("user selection "+ userSelection);
-  console.log("user selection "+ gameArray[counter]);
+  setTimeout(()=> {
+    $("body").css("background-color", "rgb(0, 0, 53)")
+  },400)
+    
+  
+  $("h1").html("Game Over. Press F5");
+  started=false;
+  // console.log("user selection "+ userSelection);
+  // console.log("user selection "+ gameArray[counter]);
 }
 function statusCheck() {
   for (i = 0; i < gameArray.length; i++) {
@@ -166,12 +178,16 @@ function statusCheck() {
       generateAndPushRandom();
       clickCounter = 0;
       counter=0;
-      console.log("click counter " + clickCounter);
-      console.log("counter " + counter);
+      gameArray=[];
+      level=0;
       userArray = [];
+      $("h1").text("Level "+level)
     } 
     // else {
     //   // gameOver();
     // }
   }
+}
+function startOver(){
+
 }
