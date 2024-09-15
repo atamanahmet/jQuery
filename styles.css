@@ -47,3 +47,6 @@ body{
     box-shadow: 0px 0px 20px white;
     background-color: gray;
 }
+.activeBox{
+    opacity: 0.5;
+}
