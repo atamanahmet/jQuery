@@ -91,36 +91,31 @@ $("body").keypress(function () {
   generateAndPushRandom();
 
   $("button").click(function () {
-    soundCount = "sound" + $(this).attr("id");
-    // console.log(soundCount);
-    soundObj[soundCount].play();
-    $(this).addClass("flash");
-    setTimeout(() => {
-      $(this).removeClass("flash");
-    }, 200);
 
+    //Sound-Animation etc
+    // soundCount = "sound" + $(this).attr("id");
+    // // console.log(soundCount);
+    // soundObj[soundCount].play();
+    // $(this).addClass("flash");
+    // setTimeout(() => {
+    //   $(this).removeClass("flash");
+    // }, 200);
+//User button click input#id getting and pushing into an array
     userSelection = Number($(this).attr("id"));
-    userArray.push(userSelection);
+    // userArray.push(userSelection);
 
     // console.log(gameArray);
 
-    if (gameArray[clickCounter] == userSelection) {
-      // console.log("user selection =" + userSelection);
-      // console.log("GameRandom = " + gameArray[clickCounter]);
-      console.log("same");
-      userArray.push(userSelection);
-      clickCounter++;
-    } else if (gameArray[clickCounter] != userSelection) {
-      console.log("user selection =" + userSelection);
-      console.log("GameRandom = " + gameArray[clickCounter]);
-      console.log("user Array = " + userArray);
-      gameOver();
-    }
-    if (JSON.stringify.gameArray == JSON.stringify.userArray) {
-      console.log(gameArray);
-      console.log(userArray);
-      generateAndPushRandom();
-    }
+ 
+
+
+
+    
+    // if (JSON.stringify.gameArray == JSON.stringify.userArray) {
+    //   console.log(gameArray);
+    //   console.log(userArray);
+    //   generateAndPushRandom();
+    // }
 
     //   if ((gameArray.length == clickCounter)&&(gameArray == userArray)) {
     //     generateAndPushRandom();
@@ -145,12 +140,22 @@ function generateAndPushRandom() {
       ); // Animation complete.
     }
   );
-
-  console.log(gameArray[clickCounter]);
+  // console.log(gameArray[clickCounter]);
 }
 function gameOver() {
   console.log("wrong");
   soundObj.wrong.play();
   $("body").css("background-color", "red");
   $("h1").html("Game Over.<br>Press F5 to Restart");
+}
+function statusCheck(){
+  for (i=0; i<gameArray.length; i++){
+    if(gameArray[i] == userArray[i]){
+      //continue
+      console.log("check done.");
+    }
+    else {
+      //gameOver();
+    }
+}
 }
