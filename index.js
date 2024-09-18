@@ -193,3 +193,35 @@
 // function startOver(){
 
 // }
+
+console.log("Welcome");
+
+import inquirer from "inquirer";
+
+var questions = [
+    {
+        type: "input",
+        name: "userName",
+        message: "What is your name?",
+        default: "NoName FU"
+    },
+    {
+        type: "input",
+        name: "qr-ableUrl",
+        message: "Please enter your URL",
+        default: "https://google.com",
+        validate (answer) {
+            if (isNaN(answer)==false){
+                console.log("Please enter a URL. URL must be a string.");
+            }
+        }
+    },
+    
+];
+
+inquirer.prompt (questions). then((answers)=>{
+    console.log(`Hello ${answers.userName}.`);
+    console.log(`Your Url: ${answers.qr-ableUrl}`);
+}
+
+)
