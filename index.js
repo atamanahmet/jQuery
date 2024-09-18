@@ -238,7 +238,3 @@ inquirer.prompt(questions).then((answers) => {
   console.log(`Your Url: ${answers.qrableUrl}`);
 });
 
-// console.log('http://example.com');
-
-
-// console.log(userUrls);
