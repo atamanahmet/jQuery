@@ -197,17 +197,18 @@ import fs from "fs";
 import inquirer from "inquirer";
 import qr from "qr-image";
 
+var data = "";
 var questions = [
   {
     type: "input",
     name: "userName",
-    message: "What is your name?",
-    default: "NoName FU",
+    message: "Give your QR code a Name:",
+    default: "NoNameFU",
   },
   {
     type: "input",
     name: "qrableUrl",
-    message: "Please enter your URL",
+    message: "Please enter your URL:",
     default: "https://google.com",
     // validate (answer) {
     //     if (isNaN(answer)==false){
@@ -220,11 +221,24 @@ var questions = [
   },
 ];
 inquirer.prompt(questions).then((answers) => {
-  console.log(`Hello ${answers.userName}.`);
-  var qrSvg = qr.image(`${answers.qrableUrl}`, { type: "svg" });
-  qrSvg.pipe(fs.createWriteStream("resultQR.svg"));
+    console.log(`Hello ${answers.userName}.`);
+    data = answers.qrableUrl;
+    fs.writeFile('userURLs.txt', data, (err) => {
+        if (err) throw err;
+        console.log('The URL file has been saved!');
+      }); 
+    fs.readFile('userURLs.txt', (err, data) => {
+        if (err) throw err;
+        var qrSvg = qr.image(data, { type: "svg" });
+        qrSvg.pipe(fs.createWriteStream(`${answers.userName}.svg`));
+      }); 
+
+  
   console.log("Your QR code has been created!");
   console.log(`Your Url: ${answers.qrableUrl}`);
 });
 
-// console.log('\e]8;;http://example.com\e\\This is a link\e]8;;\e\\\n');
+// console.log('http://example.com');
+
+
+// console.log(userUrls);
