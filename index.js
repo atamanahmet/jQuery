@@ -72,7 +72,6 @@
 //   }, 700);
 // }
 
-
 // //Dice Game
 // var randomNumber;
 // var gameArray = [];
@@ -100,7 +99,7 @@
 //     // Sound-Animation etc
 //     soundCount = "sound" + $(this).attr("id");
 //     soundObj[soundCount].play();
-    
+
 //     $(this).addClass("flash");
 //     setTimeout(() => {
 //       $(this).removeClass("flash");
@@ -124,7 +123,6 @@
 //     } else {
 //       gameOver();
 //     }
-    
 
 //     // if (JSON.stringify.gameArray == JSON.stringify.userArray) {
 //     //   generateAndPushRandom();
@@ -165,8 +163,7 @@
 //   setTimeout(()=> {
 //     $("body").css("background-color", "rgb(0, 0, 53)")
 //   },400)
-    
-  
+
 //   $("h1").html("Game Over. Press F5");
 //   started=false;
 //   // console.log("user selection "+ userSelection);
@@ -184,7 +181,7 @@
 //       level=0;
 //       userArray = [];
 //       $("h1").text("Level "+level)
-//     } 
+//     }
 //     // else {
 //     //   // gameOver();
 //     // }
@@ -196,32 +193,38 @@
 
 console.log("Welcome");
 
+import fs from "fs";
 import inquirer from "inquirer";
+import qr from "qr-image";
 
 var questions = [
-    {
-        type: "input",
-        name: "userName",
-        message: "What is your name?",
-        default: "NoName FU"
-    },
-    {
-        type: "input",
-        name: "qr-ableUrl",
-        message: "Please enter your URL",
-        default: "https://google.com",
-        validate (answer) {
-            if (isNaN(answer)==false){
-                console.log("Please enter a URL. URL must be a string.");
-            }
-        }
-    },
-    
+  {
+    type: "input",
+    name: "userName",
+    message: "What is your name?",
+    default: "NoName FU",
+  },
+  {
+    type: "input",
+    name: "qrableUrl",
+    message: "Please enter your URL",
+    default: "https://google.com",
+    // validate (answer) {
+    //     if (isNaN(answer)==false){
+    //         console.log("Please enter a URL. URL must be a string.");
+    //     }
+    //     else {
+    //         return answer;
+    //     }
+    // }
+  },
 ];
+inquirer.prompt(questions).then((answers) => {
+  console.log(`Hello ${answers.userName}.`);
+  var qrSvg = qr.image(`${answers.qrableUrl}`, { type: "svg" });
+  qrSvg.pipe(fs.createWriteStream("resultQR.svg"));
+  console.log("Your QR code has been created!");
+  console.log(`Your Url: ${answers.qrableUrl}`);
+});
 
-inquirer.prompt (questions). then((answers)=>{
-    console.log(`Hello ${answers.userName}.`);
-    console.log(`Your Url: ${answers.qr-ableUrl}`);
-}
-
-)
+// console.log('\e]8;;http://example.com\e\\This is a link\e]8;;\e\\\n');
