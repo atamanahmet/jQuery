@@ -1,0 +1,14 @@
+{
+  "name": "node-edu",
+  "version": "0.0.1",
+  "description": "jquery edu",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "qr-image": "^3.2.0"
+  }
+}
