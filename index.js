@@ -241,18 +241,23 @@
 import express from "express";
 const app = express();
 const port = 3000;
-
+const reqparams={
+    "name": "ataman"
+}
 app.listen(port, ()=>{
     console.log("Server online");
     res.sendStatus(200)
 })
 app.get("/", (req,res)=>{
+
     res.send("<h1>Hello World!<h1/>")
     res.sendStatus(200)
+    res.send(reqs)
 })
 
-app.post("/", (req, res)=>{
+app.post("/about", (req, res)=>{
     res.sendStatus(201)
+    
 })
 
 app.get("/contact", (req,res)=>{
