@@ -249,10 +249,11 @@ app.get("/", (req,res)=>{
     res.send("<h1>Hello World!<h1/>")
 })
 
-app.get("/about", (req, res)=>{
+app.post("/about", (req, res)=>{
     res.send("<h1>About me<h1/>")
 })
 
 app.get("/contact", (req,res)=>{
-    res.send("<h1>Contact Me<h1/>")
+    // res.send("<h1>Contact Me<h1/>")
+    res.sendStatus(200);
 })
