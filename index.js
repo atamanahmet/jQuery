@@ -244,16 +244,19 @@ const port = 3000;
 
 app.listen(port, ()=>{
     console.log("Server online");
+    res.sendStatus(200)
 })
 app.get("/", (req,res)=>{
     res.send("<h1>Hello World!<h1/>")
+    res.sendStatus(200)
 })
 
-app.post("/about", (req, res)=>{
-    res.send("<h1>About me<h1/>")
+app.post("/", (req, res)=>{
+    res.sendStatus(201)
 })
 
 app.get("/contact", (req,res)=>{
     // res.send("<h1>Contact Me<h1/>")
     res.sendStatus(200);
+    console.log(req.params); 
 })
