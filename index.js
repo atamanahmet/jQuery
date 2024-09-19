@@ -243,10 +243,16 @@ const app = express();
 const port = 3000;
 
 app.listen(port, ()=>{
-    console.log(`Server Status: Online at port ${port}`)
+    console.log("Server online");
+})
+app.get("/", (req,res)=>{
+    res.send("<h1>Hello World!<h1/>")
 })
 
-app.get("/", (req, res)=>{
-    res.send("Hello WOrld");
-    
+app.get("/about", (req, res)=>{
+    res.send("<h1>About me<h1/>")
+})
+
+app.get("/contact", (req,res)=>{
+    res.send("<h1>Contact Me<h1/>")
 })
