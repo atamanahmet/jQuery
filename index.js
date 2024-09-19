@@ -191,50 +191,57 @@
 
 // }
 
-console.log("Welcome");
+// console.log("Welcome");
 
-import fs from "fs";
-import inquirer from "inquirer";
-import qr from "qr-image";
+// import fs from "fs";
+// import inquirer from "inquirer";
+// import qr from "qr-image";
 
-var data = "";
-var questions = [
-  {
-    type: "input",
-    name: "userName",
-    message: "Give your QR code a Name:",
-    default: "NoNameFU",
-  },
-  {
-    type: "input",
-    name: "qrableUrl",
-    message: "Please enter your URL:",
-    default: "https://google.com",
-    // validate (answer) {
-    //     if (isNaN(answer)==false){
-    //         console.log("Please enter a URL. URL must be a string.");
-    //     }
-    //     else {
-    //         return answer;
-    //     }
-    // }
-  },
-];
-inquirer.prompt(questions).then((answers) => {
-    console.log(`Hello ${answers.userName}.`);
-    data = answers.qrableUrl;
-    fs.writeFile('userURLs.txt', data, (err) => {
-        if (err) throw err;
-        console.log('The URL file has been saved!');
-      }); 
-    fs.readFile('userURLs.txt', (err, data) => {
-        if (err) throw err;
-        var qrSvg = qr.image(data, { type: "svg" });
-        qrSvg.pipe(fs.createWriteStream(`${answers.userName}.svg`));
-      }); 
+// var data = "";
+// var questions = [
+//   {
+//     type: "input",
+//     name: "userName",
+//     message: "Give your QR code a Name:",
+//     default: "NoNameFU",
+//   },
+//   {
+//     type: "input",
+//     name: "qrableUrl",
+//     message: "Please enter your URL:",
+//     default: "https://google.com",
+//     // validate (answer) {
+//     //     if (isNaN(answer)==false){
+//     //         console.log("Please enter a URL. URL must be a string.");
+//     //     }
+//     //     else {
+//     //         return answer;
+//     //     }
+//     // }
+//   },
+// ];
+// inquirer.prompt(questions).then((answers) => {
+//     console.log(`Hello ${answers.userName}.`);
+//     data = answers.qrableUrl;
+//     fs.writeFile('userURLs.txt', data, (err) => {
+//         if (err) throw err;
+//         console.log('The URL file has been saved!');
+//       }); 
+//     fs.readFile('userURLs.txt', (err, data) => {
+//         if (err) throw err;
+//         var qrSvg = qr.image(data, { type: "svg" });
+//         qrSvg.pipe(fs.createWriteStream(`${answers.userName}.svg`));
+//       }); 
 
   
-  console.log("Your QR code has been created!");
-  console.log(`Your Url: ${answers.qrableUrl}`);
-});
+//   console.log("Your QR code has been created!");
+//   console.log(`Your Url: ${answers.qrableUrl}`);
+// });
 
+import express from "express";
+const app = express();
+const port = 3000;
+
+app.listen(port, ()=>{
+    console.log(`Server Status: Online at port ${port}`)
+})

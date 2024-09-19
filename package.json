@@ -1,5 +1,5 @@
 {
-  "name": "node-edu",
+  "name": "edu",
   "version": "0.0.1",
   "description": "jquery edu",
   "main": "index.js",
@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.21.0",
     "inquirer": "^11.0.2",
     "qr-image": "^3.2.0"
   }
