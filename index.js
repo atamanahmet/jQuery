@@ -313,34 +313,67 @@
 //     res.sendStatus(200);
 // })
 
+// import express from "express";
+// import bodyParser from "body-parser";
+// import path from "path";
+
+// const app = express();
+// const port = 3000;
+// var directory = path.dirname(import.meta.url)+"/public/index.html";
+// var bandName="";
+// // var  directory = new URL(path.dirname(import.meta.url));
+// // directory =directory.pathname.slice(1)+"/public/index.html";
+// directory = directory.slice(8);
+// // console.log(directory);
+
+// app.use(bodyParser.urlencoded({extended: true}));
+
+
+// app.get("/", (req, res) => {
+//     res.sendFile(directory);
+// })
+
+// app.post("/submit", (req, res) => {
+//     console.log(req.body);
+//     bandName = req.body.street+req.body.petName;
+//     console.log(bandName);
+//     res.send("<h1>Your Band Name is:<h1/>"+`<h2>${bandName}🎧<h2/>`)
+   
+// })
+// app.listen(port, (req, res) => {
+//     console.log("Server online. Listening in port: "+port);
+    
+// })
+
+
 import express from "express";
 import bodyParser from "body-parser";
 import path from "path";
+import { fileURLToPath } from "url";
 
-const app = express();
 const port = 3000;
-var directory = path.dirname(import.meta.url)+"/public/index.html";
-var bandName="";
-// var  directory = new URL(path.dirname(import.meta.url));
-// directory =directory.pathname.slice(1)+"/public/index.html";
-directory = directory.slice(8);
-// console.log(directory);
+const app = express();
+const passcode=123456789;
+const directory = new URL(fileURLToPath(path.dirname(import.meta.url)))
 
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({extended: true}))
 
-
-app.get("/", (req, res) => {
-    res.sendFile(directory);
+console.log(directory.href);
+app.listen(port, (req,res) => {
+    // res.sendStatus(200);
+    console.log("Server online on port : "+port);
 })
-
-app.post("/submit", (req, res) => {
+app.get("/", (req,res) => {
+    res.sendFile(directory.href+"/public/index.html");
+})
+app.post("/check", (req, res) => {
     console.log(req.body);
-    bandName = req.body.street+req.body.petName;
-    console.log(bandName);
-    res.send("<h1>Your Band Name is:<h1/>"+`<h2>${bandName}🎧<h2/>`)
-   
-})
-app.listen(port, (req, res) => {
-    console.log("Server online. Listening in port: "+port);
-    
+    if (passcode==req.body["password"]) {
+        console.log("AuthOK");
+        res.sendFile(directory.href+"/public/secret.html")
+    }
+    else {
+        console.log("AuthNO");
+        res.sendFile(directory.href+"/public/index.html")
+    }
 })
