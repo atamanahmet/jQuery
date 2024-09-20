@@ -7,7 +7,8 @@
 }
 body{
     font-family: "Press Start 2P", system-ui;
-    font-weight: 400;
+    /* font-family: "Monaspace Neon", system-ui; */
+    /* font-weight: 400; */
     font-style: normal;
     text-align: center;
     display: grid;
@@ -46,4 +47,5 @@ body{
 .flash{
     box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.719);
     background-color: gray;
+    
 }
