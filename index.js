@@ -238,30 +238,78 @@
 //   console.log(`Your Url: ${answers.qrableUrl}`);
 // });
 
-import express from "express";
-const app = express();
-const port = 3000;
-const reqparams={
-    "name": "ataman"
-}
-app.listen(port, ()=>{
-    console.log("Server online");
-    res.sendStatus(200)
-})
-app.get("/", (req,res)=>{
+// import express from "express";
+// const app = express();
+// const port = 3000;
+// const reqparams={
+//     "name": "ataman"
+// }
+// app.listen(port, ()=>{
+//     console.log("Server online");
+//     res.sendStatus(200)
+// })
+// app.get("/", (req,res)=>{
 
-    res.send("<h1>Hello World!<h1/>")
-    res.sendStatus(200)
-    res.send(reqs)
-})
+//     res.send("<h1>Hello World!<h1/>")
+//     res.sendStatus(200)
+//     res.send(reqs)
+// })
 
-app.post("/about", (req, res)=>{
-    res.sendStatus(201)
+// app.post("/about", (req, res)=>{
+//     res.sendStatus(201)
     
-})
+// })
 
-app.get("/contact", (req,res)=>{
-    // res.send("<h1>Contact Me<h1/>")
-    res.sendStatus(200);
-    console.log(req.params); 
-})
+// app.get("/contact", (req,res)=>{
+//     // res.send("<h1>Contact Me<h1/>")
+//     res.sendStatus(200);
+//     console.log(req.params); 
+// })
+// import express from "express";
+// import path from "path"
+// import bodyParser from "body-parser";
+// import morgan from "morgan"
+
+// const app = express();
+// const port = 3000;
+
+// const directory = new URL(path.dirname(import.meta.url));
+// function logdiy(req, res, next) {
+//     console.log("Request method: "+ req.method);
+//     console.log("Client ip: "+ req.ip);
+    
+//     next();
+// }
+
+// app.use(logdiy);
+// // app.use((req, res, next)=>{
+// //     console.log(req)
+// // })
+
+// app.use(bodyParser.urlencoded({ extended: true }));
+
+
+// app.listen(port, ()=>{
+//     console.log("Server online");
+// })
+
+// app.get("/", (req,res)=>{
+//     res.sendFile(directory.pathname.slice(1)+"/public/index.html")
+// })
+
+// app.post("/submit",(req, res)=>{
+//     console.log(req.body);
+    
+//     res.sendStatus(201)
+    
+// })
+
+// app.put("/contact", (req,res)=>{
+//     // res.send("<h1>Contact Me<h1/>")
+//     res.sendStatus(200);
+// })
+// app.put("/me", (req,res)=>{
+//     // res.send("<h1>Contact Me<h1/>")
+//     res.sendStatus(200);
+// })
+
