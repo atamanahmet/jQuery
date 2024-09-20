@@ -313,3 +313,34 @@
 //     res.sendStatus(200);
 // })
 
+import express from "express";
+import bodyParser from "body-parser";
+import path from "path";
+
+const app = express();
+const port = 3000;
+var directory = path.dirname(import.meta.url)+"/public/index.html";
+var bandName="";
+// var  directory = new URL(path.dirname(import.meta.url));
+// directory =directory.pathname.slice(1)+"/public/index.html";
+directory = directory.slice(8);
+// console.log(directory);
+
+app.use(bodyParser.urlencoded({extended: true}));
+
+
+app.get("/", (req, res) => {
+    res.sendFile(directory);
+})
+
+app.post("/submit", (req, res) => {
+    console.log(req.body);
+    bandName = req.body.street+req.body.petName;
+    console.log(bandName);
+    res.send("<h1>Your Band Name is:<h1/>"+`<h2>${bandName}🎧<h2/>`)
+   
+})
+app.listen(port, (req, res) => {
+    console.log("Server online. Listening in port: "+port);
+    
+})
