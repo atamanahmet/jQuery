@@ -9,40 +9,44 @@ const indexDirectory = new URL(fileURLToPath(path.dirname(import.meta.url)));
 const directoryEJS = indexDirectory.pathname + "/views/index.ejs";
 const date = new Date().getDay();
 const weekdays = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday"
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
 ];
 var dayType = "";
 var advice = "";
-if(date == 0 || date==6){
-dayType= "is weekend";
-advice = "it is time to play hard!";
+if (date == 0 || date == 6) {
+  dayType = "is weekend";
+  advice = "it is time to play hard!";
+} else {
+  dayType = "a weekday";
+  advice = "it is time to work hard!";
 }
-else {dayType= "a weekday";
-    advice = "it is time to work hard!";
-}
-
-app.set('view engine', 'ejs')
+// <h1><%= day %> is <%= dayType%>, <%= advice %>!</h1>
+// app.set("view engine", "ejs");
 console.log(directoryEJS);
 
 // console.log(indexDirectory.pathname);
-
+const bowl = ["apple", "pear", "bok"]
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  res.sendFile(indexDirectory + "/index.html");
+  res.render("index.ejs", {fruit : bowl})
 });
 app.listen(port, (req, res) => {
   console.log("Listening on port: " + port);
 });
 
-app.post("/daywrite", (req, res) => {
-  res.render("index.ejs", {name: req.body.name1, day: weekdays[date], advice: advice, dayType: dayType });
-//   console.log(req.body.name1);
- 
-});
+// app.post("/daywrite", (req, res) => {
+//   res.render("index.ejs", {
+//     name: req.body.name1,
+//     day: weekdays[date],
+//     advice: advice,
+//     dayType: dayType,
+//   });
+//   //   console.log(req.body.name1);
+// });

@@ -6,9 +6,11 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>Hello <%= name %></h1>
+   <% for(let i=0; i<fruit.length; i++) { %> 
+    <li><%= fruit[i] %></li>
+    <%}%>
 
-    <h1><%= day %> is <%= dayType%>, <%= advice %>!</h1>
+  
     
   </body>
 </html>
