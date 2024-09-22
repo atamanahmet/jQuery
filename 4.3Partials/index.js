@@ -21,11 +21,12 @@ app.get("/about", (req,res) => {
 app.get("/contact", (req,res) => {
   res.render("contact.ejs")
 })
-app.post("/submit", (req,res) => {
- console.log(res.body);
-//  info.email= res.body.email;
-//  info.text= res.body.text
-//  console.log(info);
+app.post("/submit", (req,res, next) => {
+ info.name = req.body.name;
+ info.email= req.body.email;
+ info.text= req.body.text
+ getInfo();
+ res.render("index.ejs");
 })
 
 app.listen(port, () => {
@@ -33,6 +34,6 @@ app.listen(port, () => {
 });
 
 
-function getInfo(){
+function getInfo(next){
 console.log(info);
 }
