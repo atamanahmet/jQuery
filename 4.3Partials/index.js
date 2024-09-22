@@ -2,7 +2,10 @@ import express from "express";
 
 const app = express();
 const port = 3000;
+var info = {};
 app.use(express.static("public"));
+
+app.use(express.urlencoded({extended: true}))
 /* Write your code here:
 Step 1: Render the home page "/" index.ejs
 Step 2: Make sure that static files are linked to and the CSS shows up.
@@ -18,8 +21,18 @@ app.get("/about", (req,res) => {
 app.get("/contact", (req,res) => {
   res.render("contact.ejs")
 })
-app.post("/submit")
+app.post("/submit", (req,res) => {
+ console.log(res.body);
+//  info.email= res.body.email;
+//  info.text= res.body.text
+//  console.log(info);
+})
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+
+
+function getInfo(){
+console.log(info);
+}
