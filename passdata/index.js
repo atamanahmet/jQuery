@@ -8,12 +8,13 @@ var strCount;
 app.use(express.urlencoded({extended: true}))
 
 app.get("/", (req,res) => {
-    app.render("index.ejs")
+    console.log(strCount);
+    res.render("index.ejs")
 })
 
 app.post("/submit", (req,res) => {
-    console.log(res.body);
-//    res.locals.strCount = (req.body.name+req.body.lastname).trim().length;
+    // console.log(req.body);
+   res.locals.strCount = (req.body.name+req.body.lastname).trim().length;
    res.render("index.ejs", strCount);
 })
 
