@@ -5,8 +5,9 @@ const port = 3000;
 const app = express();
 var data;
 
+
 app.get("/", (req, res) => {
-    res.render("index.ejs", data)
+    res.render("index.ejs")
 })
 app.post("/submit", (req, res) => {
     
