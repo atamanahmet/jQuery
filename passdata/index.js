@@ -1,27 +1,20 @@
 import express from "express";
-import fileURLtoPath from "url";
+import ejs from "ejs";
 
-const port = 3000;
 const app = express();
+const port = 3000;
 var strCount;
+app.use(express.urlencoded({extended: true}))
 
-app.use(express.urlencoded({ extended: true }));
+app.get("/", (req,res) => {
+    app.render("index.ejs")
+})
+app.post("/submit", (req,res) => {
+   res.locals.strCount = (req.body.name+req.body.lastname).trim().length
+   res.render("index.ejs", strCount)
+})
 
-app.get("/", (req, res) => {
-  res.render("index.ejs");
-});
-
-app.post("/submit", (req, res) => {
-res.locals.strCount = (req.body.name + req.body.lastname).trim().length;
-// console.log(strCount);
-  res.render("index.ejs", strCount);
-  
-});
 
 app.listen(port, (req, res) => {
-  console.log("Server listening on port : " + port);
-});
-
-function countChar() {
- strCount = (data.name + data.lastname).trim().length;
-}
+    console.log("Server listenin on port : "+port);
+})

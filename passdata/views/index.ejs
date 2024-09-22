@@ -3,19 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Letter Count</title>
   </head>
   <body>
-    
-    <% console.log(locals.strCount); 
-    if (locals.strCount){%>
-    <h1>Your name contains <%= strCount%> letters</h1>
-    <%} 
-    else {console.log("noinput");
-        %><br /><br><br><br>
-   <% }
-    %>
-
+    <% if (locals.strCount) { %>
+    <h1>Your name contains <%=strCount%></h1>
+    <%} else{ console.log("noInput"); %>
+    <h1>Enter your name below 👇</h1>
+    <% } %>
 
     <form action="/submit" method="post">
       <input type="text" name="name" placeholder="First Name" required />
