@@ -6,11 +6,16 @@
     <title>Document</title>
   </head>
   <body>
-   <% for(let i=0; i<fruit.length; i++) { %> 
-    <li><%= fruit[i] %></li>
-    <%}%>
-
-  
-    
+    <h1><%= title%></h1>
+    <p>Current second: <%= seconds%></p>
+    <% console.log(seconds); 
+     if(seconds%2==0) { items.forEach((items) =>{%>
+    <li><%= items %></li>
+    <%}) ;
+     console.log(seconds);}%>
+    <br />
+    <%- htmlContent%>
+    <br />
+    <%- include("footer.ejs")%>
   </body>
 </html>
