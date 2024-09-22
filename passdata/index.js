@@ -4,14 +4,17 @@ import ejs from "ejs";
 const app = express();
 const port = 3000;
 var strCount;
+
 app.use(express.urlencoded({extended: true}))
 
 app.get("/", (req,res) => {
     app.render("index.ejs")
 })
+
 app.post("/submit", (req,res) => {
-   res.locals.strCount = (req.body.name+req.body.lastname).trim().length
-   res.render("index.ejs", strCount)
+    console.log(res.body);
+//    res.locals.strCount = (req.body.name+req.body.lastname).trim().length;
+   res.render("index.ejs", strCount);
 })
 
 
