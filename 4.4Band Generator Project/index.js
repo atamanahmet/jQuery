@@ -35,16 +35,25 @@ import express from "express";
 
 const app = express();
 const port = 3000;
+var result;
 
-app.use(express.static("public"))
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
 
 app.get("/", (req, res) => {
   res.render("index.ejs");
-})
+});
 
-app.listen(port, (req,res) => {
-  console.log("Server listening on port : " +port);
-})
+app.post("/submit", (req, res) => {
+  res.locals.result = `${adj[Math.floor(Math.random() * adj.length + 1)]}` +` ${
+    noun[Math.floor(Math.random() * noun.length + 1)]}`; 
+    
+  res.render("index.ejs", result);
+});
+
+app.listen(port, (req, res) => {
+  console.log("Server listening on port : " + port);
+});
 
 const adj = [
   "abandoned",
@@ -5707,3 +5716,8 @@ const noun = [
   "zucchini",
 ];
 
+// app.use(generateName(req, res, next) {
+//   result = `${adj[Math.floor(Math.random() * adj.length + 1)]} +${
+//     noun[Math.floor(Math.random() * noun.length + 1)]}`
+//   ;}
+// );
