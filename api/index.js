@@ -1,52 +1,48 @@
-import { error } from "console";
 import express from "express";
-import https from "https";
 import axios from "axios";
 
-const port = 3000;
 const app = express();
-var result;
-app.get("/", async (req, res) => {
-try {
-    const response = await axios.get("https://bored-api.appbrewery.com/random");
-    const result = response.data;
-    res.render("index.ejs", {data: result});
+const port = 3000;
+let tempParams = "";
+var stuff;
+app.use(express.static("public"));
 
-}
-catch (error){
-    console.error("Errored : ", error.message);
-    // console.log(error);
-}
-    // const options = {
-    //     hostname: "bored-api.appbrewery.com",
-    //     path: "/random",
-    //     method: "GET",
-    // };
-    // const request = https.request(options, (response)=>{
-    //     let data = "";
-    //     response.on("data", (chunk)=>{
-    //         data= data+ chunk;
-    //     });
-    //     response.on("end", () => {
-    //         try{
-    //             result = JSON.parse(data);
-    //             console.log(result);
-    //         }
-    //         catch (error){
-    //             // console.error("Erorr: ", error.message);
-    //         }
-    //     });
-    // });
-    // // request.on("error", (error)=>{
-    // //     console.error("request error", error.message)
-    // // });
+app.use(express.urlencoded({ extended: true }));
+
+app.get("/", (req, res) => {
+  res.render("index.ejs");
 });
 
+app.post("/search", async (req, res) => {
+  console.log(req.body.searchParams);
+  tempParams = "";
+  const searchParamsArray = req.body.searchParams.split(" ");
+  console.log(searchParamsArray);
+  for (let i = 0; i < searchParamsArray.length; i++) {
+    if (i == searchParamsArray.length - 1) {
+      tempParams = tempParams + searchParamsArray[i];
+    } else {
+      tempParams = tempParams + searchParamsArray[i] + "+";
+    }
+  }
+  // console.log(tempParams);
+  const url="https://openlibrary.org/search.json?q="+tempParams;
+try{
+  
+  console.log(url);
+   const response = await axios.get(url);
+   stuff = response.data.docs
+   
+  // console.log(response.data.docs[0].title);
+}
+catch (error){
+console.log(error.message);
+}
+res.locals.stuff = stuff;
+console.log(stuff);
+res.render("index.ejs", stuff)
+});
 
-
-
-
-  app.listen(port, (req, res) => {
-    console.log("Online : " + port);
-  });
-
+app.listen(port, (req, res) => {
+  console.log("listenin on port : " + port);
+});
