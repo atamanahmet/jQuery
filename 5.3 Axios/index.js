@@ -31,7 +31,7 @@ app.post("/", async (req, res) => {
   try{
   const type = req.body.type;
   const participants = req.body.participants;
-  const url = "https://bored-api.appbrewery.com/filter?type="+type+"&&participants="+participants;
+  const url = "https://bored-api.appbrewery.com/filter?type="+type+"&participants="+participants;
 
   console.log(url);
   const response = await axios.get(url);
