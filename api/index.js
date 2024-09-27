@@ -6,8 +6,17 @@ import axios from "axios";
 const port = 3000;
 const app = express();
 var result;
-app.get("/", (req, res) => {
-    
+app.get("/", async (req, res) => {
+try {
+    const response = await axios.get("https://bored-api.appbrewery.com/random");
+    const result = response.data;
+    res.render("index.ejs", {data: result});
+
+}
+catch (error){
+    console.error("Errored : ", error.message);
+    // console.log(error);
+}
     // const options = {
     //     hostname: "bored-api.appbrewery.com",
     //     path: "/random",
